@@ -1,6 +1,7 @@
 package io.simplejira.tool.jira.web;
 
 import io.simplejira.tool.jira.domain.Project;
+import io.simplejira.tool.jira.services.MapValidationErrorService;
 import io.simplejira.tool.jira.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
