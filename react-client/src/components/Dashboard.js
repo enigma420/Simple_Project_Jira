@@ -37,11 +37,11 @@ Dashboard.propTypes = {
     getProjects: PropTypes.func.isRequired
 };
 
-// const mapStateToProps = state => ({
-//   project: state.project
-// });
+const mapStateToProps = state => ({
+    project: state.project
+});
 
 export default connect(
-    null,
+    mapStateToProps,
     { getProjects }
 )(Dashboard);
