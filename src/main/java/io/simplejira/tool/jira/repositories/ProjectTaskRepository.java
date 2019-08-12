@@ -11,6 +11,7 @@ import java.util.List;
 
         List<ProjectTask> findByProjectIdentifierOrderByPriority(String id);
 
+    ProjectTask findByProjectSequence(String sequence);
     }
 
 
