@@ -32,7 +32,7 @@ public class UserController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
         // Validate passwords match
         userValidator.validate(user,result);
-        
+
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
