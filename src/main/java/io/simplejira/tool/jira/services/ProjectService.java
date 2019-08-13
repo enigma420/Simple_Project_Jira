@@ -3,9 +3,11 @@ package io.simplejira.tool.jira.services;
 
 import io.simplejira.tool.jira.domain.Backlog;
 import io.simplejira.tool.jira.domain.Project;
+import io.simplejira.tool.jira.domain.User;
 import io.simplejira.tool.jira.exceptions.ProjectIdException;
 import io.simplejira.tool.jira.repositories.BacklogRepository;
 import io.simplejira.tool.jira.repositories.ProjectRepository;
+import io.simplejira.tool.jira.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,15 @@ public class ProjectService {
     @Autowired
     private BacklogRepository backlogRepository;
 
-    public Project saveOrUpdateProject(Project project){
+    @Autowired
+    private UserRepository userRepository;
+
+    public Project saveOrUpdateProject(Project project, String username){
         try{
+
+            User user = userRepository.findByUsername(username);
+            project.setUser(user);
+            project.setProjectLeader(user.getUsername());
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
 
             if(project.getId()==null){
@@ -49,7 +58,7 @@ public class ProjectService {
             throw new ProjectIdException("Project ID '"+projectId+"' does not exist");
 
         }
-        
+
         return project;
     }
 
