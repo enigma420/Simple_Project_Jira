@@ -36,10 +36,11 @@ public class Project {
     //
     private Backlog backlog;
 
-    @ManyToOne(fetch = FetchType.EAGER) //REMOVE REFRESH
-    @JoinColumn(name="user_id", updatable = false, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
+
+    private String projectLeader;
 
     public Project() {
     }
@@ -124,7 +125,13 @@ public class Project {
         this.user = user;
     }
 
+    public String getProjectLeader() {
+        return projectLeader;
+    }
 
+    public void setProjectLeader(String projectLeader) {
+        this.projectLeader = projectLeader;
+    }
 
     @PrePersist
     protected void onCreate() {
